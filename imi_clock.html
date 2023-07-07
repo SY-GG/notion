@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400&family=EB+Garamond:ital,wght@1,500&family=Nanum+Myeongjo:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+    <style>
+      body {
+        /* font-family: "EB Garamond", serif; */
+        font-family: 'Nanum Myeongjo', serif;
+        color: white;
+        font-size: 1em;
+        text-align: center;
+      }
+      #timer {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.1)),
+          url('https://images.unsplash.com/photo-1484291470158-b8f8d608850d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80');
+        background-size: cover;
+        filter: brightness(100%);
+        min-height: 150px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        letter-spacing: 0.2em;
+      }
+      .days,
+      .hours,
+      .minutes,
+      .seconds {
+        display: inline-block;
+        padding: 20px;
+        /* width: 100px; */
+        border-radius: 5px;
+        text-transform: uppercase;
+        text-shadow: 0px 0px 10px white;
+      }
+      .numbers {
+        font-size: 2.5em;
+        font-weight: 800;
+      }
+      .letter {
+        font-size: 0.6em;
+        letter-spacing: 0.5em;
+        font-family: 'Dosis', sans-serif;
+        text-shadow: 0px 0px 10px white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="timer">
+      <div class="days">
+        <div id="days" class="numbers"></div>
+        <span class="letter">days</span>
+      </div>
+      <div class="hours">
+        <div id="hours" class="numbers"></div>
+        <span class="letter">hours</span>
+      </div>
+      <div class="minutes">
+        <div id="minutes" class="numbers"></div>
+        <span class="letter">minutes</span>
+      </div>
+      <div class="seconds">
+        <div id="seconds" class="numbers"></div>
+        <span class="letter">seconds</span>
+      </div>
+    </div>
+
+    <script>
+      const year = new Date().getFullYear();
+      const myDate = new Date('Apr 1, 2023 00:00:00');
+      console.log(myDate);
+
+      // countdown
+      let timer = setInterval(function () {
+        // get today's date
+        const today = new Date().getTime();
+
+        // get the difference
+        const diff = today - myDate;
+
+        // math
+        let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        // display
+        document.getElementById('days').innerHTML = days;
+        document.getElementById('hours').innerHTML = hours;
+        document.getElementById('minutes').innerHTML = minutes;
+        document.getElementById('seconds').innerHTML = seconds;
+      }, 1);
+    </script>
+  </body>
+</html>
